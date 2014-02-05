@@ -1,0 +1,269 @@
+$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+@import 'sass-bootstrap/lib/bootstrap';
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.text-muted {
+    text-align: center;
+}
+
+/* Custom page header */
+.header {
+    border-bottom: 1px solid #e5e5e5;
+
+    /* Make the masthead heading the same height as the navigation */
+    h3 {
+        margin-top: 0;
+        margin-bottom: 0;
+        line-height: 40px;
+        padding-bottom: 19px;
+    }
+}
+
+/*Layout styles*/
+
+.container {
+    height: 100%;
+    padding: 0px;
+
+    .jumbotron {
+        text-align: center;
+        border-bottom: 1px solid #e5e5e5;
+        margin-bottom: 0px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        position: relative;
+
+        &.variable-height {
+            height: 100%;
+        }
+
+    }
+}
+
+.chat-region {
+    height: 500px;
+}
+
+.main-row {
+    height: 100%;
+}
+
+#main-region {
+    padding: 0px;
+    height: 500px;
+}
+#additional-region {
+    min-height: 100px;
+    padding: 0px;
+}
+
+/* Main marketing message and sign up button */
+
+
+.col-md-3,
+.col-md-9,
+.jumbotron {
+    height: 100%;
+}
+
+/* chat styles */
+.well {
+    &.list-container {
+        height: 100%;
+        margin-bottom: 0px;
+        overflow-y: auto;
+        word-wrap: break-word;
+        min-height: 100px;
+    }
+}
+
+#chat-messages-container {
+    position: absolute;
+    top: 30px;
+    bottom: 60px;
+    left: 10px;
+    right: 10px;
+    height: initial;
+
+}
+
+#send-message-group {
+    position: absolute;
+    bottom: 15px;
+    left:   10px;
+    right:  10px;
+    display: inline-block;
+}
+
+/* chat - itemview */
+.chat-message {
+    line-height: 20px;
+    font-size: 17px;
+    text-align: left;
+}
+
+#message-sender {
+    font-size: 15px;
+}
+
+#message-text {
+    padding-left: 10px;
+    margin-bottom: 8px;
+}
+
+/*userlist styles*/
+
+#user-list {
+    padding: 0px;
+}
+
+.single-contact {
+    border: 0px;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #eeeeee;
+}
+
+.panel-title {
+    font-weight: inherit;
+}
+/* conversation styles */
+
+.row {
+    margin: 0px;
+}
+
+#conversation-region {
+    position: absolute;
+    margin-bottom: 0px;
+    padding: 0px;
+    height: 250px;
+
+}
+
+.col-conversation {
+    padding: 0px;
+    position: relative;
+    bottom: 0px;
+
+}
+
+.conversation-panel {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}
+
+.panel-heading {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#conversation-person-name {
+    height: 25px;
+}
+
+.conversation-body {
+    height: 250px;
+}
+
+#conversation-messages-container {
+    overflow-y: auto;
+    word-wrap: break-word;
+    position: absolute;
+    padding: 5px;
+    margin-bottom: 0px;
+    height: 225px;
+    bottom: 30px;
+    left: 0px;
+    right: 0px;
+}
+
+#conversation-input-container {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 30px;
+    width: 100%;
+}
+
+#conversation-msg-input {
+    height: 100%;
+    border-top-style: none;
+    padding: 0px;
+}
+
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .container {
+        /*max-width: 730px;*/
+    }
+
+    /* Remove the padding we set earlier */
+    .header,
+    .marketing,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+    
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0;
+        padding-top: 10px;
+    }
+
+    .panel-title {
+        color: #555555;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .main-row {
+        height: 500px;
+    }
+
+    #additional-region {
+        padding-left: 20px;
+    }
+    
+    .chat-region {
+        height: 100%;
+    }
+
+    .bottom-row {
+        position: absolute;
+        bottom: 0px;
+        width: inherit;
+        height: 1px;
+        margin: 0px;
+    }
+
+    .conversation-panel {
+        position: absolute;
+    }
+
+/*    .jumbotron {
+        &.variable-height {
+            height: 100%;
+        }
+    }*/
+}
+
