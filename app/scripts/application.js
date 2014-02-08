@@ -4,45 +4,36 @@ define([
 	'hbs!tmpl/app-container',
 	'models/Credentials',
 	'models/UserContact',
-	'models/Message',
 	'views/layout/AppLayout',
 	'views/item/LoginView',
 	'views/composite/ChatView',
 	'views/composite/UserListView',
-	'views/composite/conversationView',
 	'views/collection/conversationsView',
 	'collections/Messages',
 	'collections/UserContacts',
 	'collections/Conversations'
 ],
 
-function( Backbone, Communicator, App_container, Credentials, UserContact, Message, AppLayout, LoginView, ChatView, UserListView, ConversationView, ConversationsContainer, Messages, UserContacts, Conversations) {
+function( Backbone, Communicator, App_container, Credentials, UserContact, AppLayout, LoginView, ChatView, UserListView, ConversationsContainer, Messages, UserContacts, Conversations) {
     'use strict';
 
 	var appContainer = App_container;
 
-	var App = new Backbone.Marionette.Application();
+	var AppManager = new Backbone.Marionette.Application();
 
 	/* Add application regions here */
-	App.addRegions({
+	AppManager.addRegions({
 		container: '#application'
 	});
 
 	/* Add initializers here */
-	App.addInitializer( function () {
+	AppManager.addInitializer( function () {
 		document.body.innerHTML = appContainer();
 		Communicator.mediator.trigger("APP:START");
 
-		// var sampleMessages = new Messages([
-		// 	new Message({"msg": "hellou there"}),
-		// 	new Message({"msg": "how are you"}),
-		// 	new Message({"msg": ", Yeah!"})
-		// 	]
-		// );
-
 		var loginView = new LoginView({ model: new Credentials });
 
-		// comment that
+		// temp
 		initializeLayout(new Credentials);
 		//uncomment that :)
 		// App.container.show(loginView);
@@ -51,12 +42,6 @@ function( Backbone, Communicator, App_container, Credentials, UserContact, Messa
 	var initializeLayout = function (authModel) {
 		var appLayout = new AppLayout({model: authModel});
 		var chat = new ChatView({collection: new Messages});
-
-		// var sampleConversations = new Conversations([		
-		// 		new ConversationView({userName: 'Maciej'}),
-		// 		new ConversationView({userName: 'Patryk'}),
-		// 		new ConversationView({userName: 'Lolo'})
-		// 	]);
 
 		var sampleConversations = new Conversations([
 			new UserContact({userName: "Tomasz", id: 1}),
@@ -73,10 +58,8 @@ function( Backbone, Communicator, App_container, Credentials, UserContact, Messa
 		]);
 
 		var contacts = new UserListView({collection: sampleUserList});
-		
-		
 
-		App.container.show(appLayout);
+		AppManager.container.show(appLayout);
 		appLayout.main.show(chat);
 		appLayout.additional.show(contacts);
 		appLayout.conversations.show(activeConversations);
@@ -97,5 +80,5 @@ function( Backbone, Communicator, App_container, Credentials, UserContact, Messa
 		console.log('user logged out');
 	});
 
-	return App;
+	return AppManager;
 });
