@@ -16,6 +16,7 @@ define(["app", "apps/contacts/list/list_view"], function(AppManager, View){
 
             startConversation: function (user) {
                  console.log('conversation with ' + user.model.get('name') + ' started');
+                 AppManager.trigger("conversation:new", user);
             }
         };
     });

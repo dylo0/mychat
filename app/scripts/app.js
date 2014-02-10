@@ -4,7 +4,7 @@ define(['backbone', 'communicator'], function ( Backbone, Communicator) {
     AppManager.addRegions({
         mainRegion:       "#main-region",
         sidebarRegion:    "#sidebar",
-        footerRegion:     "#conversations-region"
+        conversationsRegion:     "#conversations-region"
     });
 
     AppManager.addInitializer( function () {

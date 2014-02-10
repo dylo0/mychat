@@ -1,6 +1,12 @@
 define(["app"], function(AppManager){
  	AppManager.module("Entities", function(Entities, AppManager, Backbone, Marionette, $, _){
 	    Entities.User = Backbone.Model.extend({
+			initialize: function () {
+				messages = this.get('messages');
+				this.messages = new Entities.MessageCollection(messages);
+				this.unset('messages');
+			},
+
 			defaults: {
 				id: 0,
 				name: 'Tomasz'
@@ -13,9 +19,15 @@ define(["app"], function(AppManager){
 
 	    var initializeUsers = function () {
 	    	var users = new Entities.UserCollection([
-	    		{name: 'Maciej', id: 1},
-	    		{name: 'Tomasz', id: 2},
-	    		{name: 'Marcin', id: 3}
+	    		{name: 'Maciej',  id: 1},
+	    		{name: 'Tomasz',  id: 2},
+	    		{name: 'Marcin',  id: 3},
+	    		{name: 'Michał',  id: 4},
+	    		{name: 'Dawid',   id: 5},
+	    		{name: 'Patryk',  id: 6},
+	    		{name: 'Przemek', id: 7},
+	    		{name: 'Robert',  id: 8},
+	    		{name: 'Mateusz', id: 9}
 	    	]);
 
 	    	return users.models;
@@ -28,7 +40,7 @@ define(["app"], function(AppManager){
 
 				return users;
 			},
-		};
+		}
 
 	    AppManager.reqres.setHandler("contact:entities", function(){
 	      return API.getUserEntities();

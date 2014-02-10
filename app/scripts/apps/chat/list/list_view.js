@@ -9,6 +9,9 @@ define(["app",
         });
 
         View.ChatView = Backbone.Marionette.CompositeView.extend({
+            initialize: function () {
+                console.log(this.collection);
+            },
             itemView: View.MessageView,
             template: ChatTpl,
             className: 'jumbotron chat-region',
