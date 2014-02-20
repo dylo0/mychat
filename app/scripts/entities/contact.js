@@ -9,7 +9,7 @@ define(["app"], function(AppManager){
 
 			defaults: {
 				id: 0,
-				name: 'Tomasz'
+				username: 'Tomasz'
 			}
 	    });
 		
@@ -17,38 +17,108 @@ define(["app"], function(AppManager){
 	    	model: Entities.User
 	    });
 
-	    var initializeUsers = function () {
-	    	var users = new Entities.UserCollection([
-	    		{name: 'Maciej',  id: 1},
-	    		{name: 'Tomasz',  id: 2},
-	    		{name: 'Marcin',  id: 3},
-	    		{name: 'Michał',  id: 4},
-	    		{name: 'Dawid',   id: 5},
-	    		{name: 'Patryk',  id: 6},
-	    		{name: 'Przemek', id: 7},
-	    		{name: 'Robert',  id: 8},
-	    		{name: 'Mateusz', id: 9}
-	    	]);
+	    Entities.getContact = function (id) {
+            var found;
+            var contacts = API.getUserEntities();
+            
+            $.when(contacts).done(function () {
+	            contacts.each(function (contact) {
+	                if (contact.get('id') == id) {
+	                    found = contact;
+	                }
+	            });            	
+            });
 
-	    	return users.models;
-	    }
+            return found;
+
+            // TODO add fetch contact credentials from server if not found
+            // (Case of message from unknown user );
+        };
+
+	    Entities.removeUser = function (id) {
+	    	user = Entities.getContact(id);
+	    	Entities.AllContacts.remove(user);
+	    };
+
+	    Entities.initializeUsers = function () {
+	    	var users = AppManager.request('user:list');
+	    	var defer = $.Deferred();
+
+	    	// lacks error handling for now
+	    	users.done(function (entities) {
+	    		var allusers = new Entities.UserCollection();
+	    		var hostID = AppManager.request('user:info').id;
+
+	    		_.each(entities, function (username, id) {
+					if (id != hostID) {
+		    			model = new Entities.User({
+		    				id: id,
+		    				username: username
+		    			});
+		    		
+		    			allusers.add(model);
+		    		}
+	    		});
+				
+				Entities.AllContacts = allusers;
+				defer.resolve();
+	    	});
+
+	    	return defer.promise();
+	    };
+
 
 		var API = {
-			getUserEntities: function () {
-				var models = initializeUsers();
-				var users = new Entities.UserCollection(models);
-
-				return users;
+			initializeUsers: function () {
+				return Entities.initializeUsers();
 			},
-		}
 
-	    AppManager.reqres.setHandler("contact:entities", function(){
-	      return API.getUserEntities();
-	    });
+			getUserEntities: function () {
+				return Entities.AllContacts;
+			},
 
-	    AppManager.reqres.setHandler("contact:entity:new", function(){
-	      return new Entities.User();
-	    });
+			getContactEntity: function (id) {
+				return Entities.getContact(id);
+			},
+
+			addUser: function (data) {
+				var user = new Entities.User(data);
+				Entities.AllContacts.add(user);
+			},
+
+			removeUser: function (id) {
+				Entities.removeUser(id);
+			}
+		};
+
+		var regHandlers = function () {
+			AppManager.on('user:connected', function (data) {
+				API.addUser(data);
+			});
+
+			AppManager.on('user:disconnected', function (data) {
+				// temperary commented out (conflict with chat module)
+				// API.removeUser(data);
+			});
+
+		    AppManager.reqres.setHandler("contact:entities", function(){
+		        return API.getUserEntities();
+		    });
+
+		    AppManager.reqres.setHandler("contact:entity", function (id) {
+		    	return API.getContactEntity(id);
+		    });
+
+		    AppManager.reqres.setHandler("contact:entity:new", function(){
+		      return new Entities.User();
+		    });
+		};
+		
+		AppManager.reqres.setHandler("initialize:contacts", function () {
+			return API.initializeUsers();
+		});
+
+		AppManager.on('login:success', regHandlers);
 	});
 
 	return;

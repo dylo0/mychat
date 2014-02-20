@@ -10,7 +10,6 @@ define(["app"], function(AppManager){
 			},
 
 			defaults: {
-				author:		'Tomasz',
 				msg: 		'',
 				created: 	0,
 				sendTime:   '0' 
@@ -23,9 +22,7 @@ define(["app"], function(AppManager){
 
 	    var initializeMessages = function () {
 	    	var messages = new Entities.MessageCollection([
-	    		{author: 'Maciej', msg: 'Cześć Wam!', sendTime: '20:51'},
-	    		{author: 'Michał', msg: 'Ahoj!', sendTime: '20:53'},
-	    		{author: 'Patryk', msg: 'Witam!', sendTime: '20:53'}
+	    		{msg: 'Welcome to bootstrap chat!'},
 	    	]);
 
 	    	return messages.models;
@@ -39,6 +36,7 @@ define(["app"], function(AppManager){
 				return messages;
 			},
 		};
+
 
 	    AppManager.reqres.setHandler("chat:entities", function(){
 	      return API.getMessageEntities();

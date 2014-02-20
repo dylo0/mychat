@@ -2,6 +2,10 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'sass-bootstrap/lib/bootstrap';
 
+body {
+    background: #eee;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -9,9 +13,22 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
     padding: 0.2em 0;
 }
 
-.text-muted {
+.header-label {
     text-align: center;
+    text-shadow: #FFF 0 1px 0, #444 0 -1px;
+    color: #aaa;
 }
+
+.notification-icon {
+    color: #666;
+    margin-left: 5px;
+}
+/*
+.form-control:focus{
+    border-color : #999;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(100, 100, 100, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(100, 100, 100, 0.6);
+}*/
 
 /* Custom page header */
 .header {
@@ -66,13 +83,12 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
     padding: 0px;
 }
 
-/* Main marketing message and sign up button */
 
 
-.col-md-3,
-.col-md-9,
-.jumbotron {
-    height: 100%;
+/* login page styling */
+
+#login-label {
+    margin-top: 40px;
 }
 
 /* chat styles */
@@ -105,6 +121,10 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 }
 
 /* chat - itemview */
+.chat-region {
+    height: 100%;
+}
+
 .chat-message {
     line-height: 20px;
     font-size: 17px;
@@ -118,6 +138,11 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 #message-text {
     padding-left: 10px;
     margin-bottom: 8px;
+}
+
+.text-small {
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
 /*userlist styles*/
@@ -138,24 +163,19 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 }
 /* conversation styles */
 
+
 .row {
     margin: 0px;
 }
 
-#conversation-region {
-    position: absolute;
-    margin-bottom: 0px;
-    padding: 0px;
-    height: 250px;
-
+.conversation {
+    margin-bottom: 10px;
 }
 
-.col-conversation {
-    padding: 0px;
-    position: relative;
-    bottom: 0px;
-
+#conversations-region {
+    margin-top: 30px;
 }
+
 
 .conversation-panel {
     position: relative;
@@ -233,9 +253,16 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
     .panel-title {
         color: #555555;
     }
+
+
 }
 
 @media screen and (min-width: 992px) {
+
+    body {
+        overflow: hidden;
+    }
+
     .main-row {
         height: 500px;
     }
@@ -244,9 +271,6 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
         padding-left: 20px;
     }
     
-    .chat-region {
-        height: 100%;
-    }
 
     .bottom-row {
         position: absolute;
@@ -258,6 +282,12 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
     .conversation-panel {
         position: absolute;
+        bottom: -49px;
+    }
+
+    #conversations-region {
+        margin-left: -5px;
+        margin-right: 25px;
     }
 
 /*    .jumbotron {

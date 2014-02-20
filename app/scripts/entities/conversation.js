@@ -2,30 +2,7 @@ define(["app"], function(AppManager){
  	AppManager.module("Entities", function(Entities, AppManager, Backbone, Marionette, $, _){	
 	   
 	    var initializeConversations = function () {
-	    	var users = new Entities.UserCollection([
-	    		{
-	    			name: 'Maciej', 
-	    		 	id: 1, 
-	    		 	messages: [
-	    				new Entities.Message({author: 'Maciej', msg: 'hellou'}),
-	    				new Entities.Message({author: 'Maciej', msg: 'hi'}),
-	    				new Entities.Message({author: 'Maciej', msg: 'kiko'})
-	    			]
-	    		},
-	    		{
-	    			name: 'Marcin', 
-	    			id: 3,
-	    		 	messages: [
-	    				new Entities.Message({author: 'Marcin', msg: 'hellou'}),
-	    				new Entities.Message({author: 'Marcin', msg: 'hi'}),
-	    				new Entities.Message({author: 'Marcin', msg: 'kiko'})
-	    			]
-	    		},
-	    		{
-	    			name: 'Łukasz', 
-	    			id: 4
-	    		}	    		
-	    	]);
+	    	var users = new Entities.UserCollection();
 
 	    	return users.models;
 	    }
@@ -33,6 +10,10 @@ define(["app"], function(AppManager){
 		var API = {
 			getConversationEntities: function () {
 				var models = initializeConversations();
+
+				//temperary trigger message for testing:
+				AppManager.trigger('incoming:message')
+
 				return new Entities.UserCollection(models);
 			},
 		}

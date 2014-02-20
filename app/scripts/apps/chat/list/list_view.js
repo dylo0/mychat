@@ -9,9 +9,6 @@ define(["app",
         });
 
         View.ChatView = Backbone.Marionette.CompositeView.extend({
-            initialize: function () {
-                console.log(this.collection);
-            },
             itemView: View.MessageView,
             template: ChatTpl,
             className: 'jumbotron chat-region',
@@ -28,7 +25,11 @@ define(["app",
             },
 
             onShow: function () {
-                this.ui.messages.scrollTop(this.ui.messages[0].scrollHeight);
+                this.scrollMessages();
+            },
+
+            onAfterItemAdded: function () {
+                this.scrollMessages();
             },
 
             onInputKeypress: function (evt) {
@@ -39,14 +40,18 @@ define(["app",
                 }
             },
 
+            scrollMessages: function () {
+                 this.ui.messages.scrollTop(this.ui.messages[0].scrollHeight);
+            },
+            
             sendMessage: function () {
                 var messageText = this.ui.input.val().trim();
                 if (messageText) {
-                    this.trigger('send:message', messageText);
+                    this.trigger('send:chat:message', messageText);
                     this.ui.input.val('');
                   
                     //scrolls messages container to bottom
-                    this.ui.messages.scrollTop(this.ui.messages[0].scrollHeight);
+                    this.scrollMessages();
                 }
             }
         });    

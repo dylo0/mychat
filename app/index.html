@@ -16,7 +16,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         
         <link rel="stylesheet" href="styles/main.css">
-        
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
@@ -27,14 +27,15 @@
     <body>
         <div class="container">
             <div class="header">
-                <h1 class="text-muted">Bootstrap chat</h1>
+                <h1 class="header-label">Bootstrap chat</h1>
             </div>
+            <div id="login"></div>
             <div class="row main-row">
                 <div class="col-md-9" id="main-region"></div>
-                <div class="col-md-3 sidebar" id="sidebar"></div>
+                <div class="col-sm-6 col-md-3 sidebar" id="sidebar"></div>
+                <div id="conversations-region"></div>
             </div>
-            <div class="row bottom-row" id="conversations-region">
-            </div>    
+                
         </div>
         
         <!-- build:js scripts/main.js -->

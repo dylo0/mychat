@@ -17,6 +17,10 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
+        },
+        ionsound: {
+            deps: ['jquery'],
+            exports: 'jquery'
         }
     },
 
@@ -30,6 +34,12 @@ require.config({
         'backbone.wreqr': '../bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
         'backbone.babysitter': '../bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
 
+        //alias for ionsound
+        ionsound: 'vendor/ion.sound.min',
+
+        //alias for socket.io
+        socketio: 'vendor/socket.io.min',
+        
         /* alias the bootstrap js lib */
         bootstrap: 'vendor/bootstrap',
 

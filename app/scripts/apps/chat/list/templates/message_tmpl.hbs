@@ -1,4 +1,8 @@
 <div class="chat-message" id="message">
+  {{#if author}}
     <div id="message-sender" class="text"><b>{{author}}</b> {{created}}: </div>
     <div id="message-text"> {{msg}}</div>
+  {{else}}
+  	<div class="text-muted text-small">{{created}} {{msg}}</div>
+  {{/if}}
 </div>
