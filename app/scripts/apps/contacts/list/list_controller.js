@@ -36,7 +36,7 @@ define(["app", "apps/contacts/list/list_view"], function(AppManager, View){
 
             removeUser: function (id, col) {
                 col.each(function (user) {
-                    if (user.get(id) == id) {
+                    if (user.id == id) {
                         col.remove(user);
                         return;
                     }
