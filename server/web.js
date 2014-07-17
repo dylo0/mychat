@@ -48,6 +48,7 @@ var mongoose = require('mongoose');
 
 	// mount static
 	app.use(express.static( path.join( __dirname, '../app') ));
+	app.use(express.static( path.join( __dirname, '../dist') ));
 	app.use(express.static( path.join( __dirname, '../.tmp') ));
 
 
