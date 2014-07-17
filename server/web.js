@@ -11,11 +11,11 @@ var mongoose = require('mongoose');
 
 
 // start mongoose
-mongoose.connect('mongodb://localhost/sit');
-var db = mongoose.connection;
+// mongoose.connect('mongodb://localhost/sit');
+// var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function callback () {
 
 	/* test schema */
     var testSchema = new mongoose.Schema({
@@ -32,7 +32,7 @@ db.once('open', function callback () {
 	var app = express();
 
 	app.configure(function(){
-	    app.set('port', 9000);
+	    app.set('port', process.env.PORT || 9000);
 
 	    app.set('view engine', 'handlebars');
 	    app.set('views', __dirname + '../app/scripts/views');
@@ -119,7 +119,7 @@ db.once('open', function callback () {
 			delete users[socket.username];
 			socket.broadcast.emit('user:disconnected', id)
 		});
-	});
+	// });
 });
 
 
