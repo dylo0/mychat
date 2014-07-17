@@ -11,7 +11,8 @@
     "socket.io": "~0.9.14",
     "baucis": "~0.4.6",
     "express-hbs": "~0.2.0",
-    "underscore": "~1.4.4"
+    "underscore": "~1.4.4",
+    "bower": ""
   },
   
   "devDependencies": {
@@ -44,5 +45,8 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  }
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
+   }
 }
